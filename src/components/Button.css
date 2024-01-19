@@ -1,0 +1,43 @@
+.p-btn {
+    border: 3px solid #313131;
+    line-height: 4.8rem;
+    width: 250px;
+    display: inline-block;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .3rem;
+    height: 5.4rem;
+    margin: 0 2rem;
+    color: #313131;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+
+}
+
+.p-btn:hover {
+    border: 3px solid #FF0077;
+    color: #FF0077;
+}
+
+.p-btn.btn-dark {
+    background: #313131;
+    color: #FFFFFF;
+}
+
+.p-btn.btn-dark:hover {
+    border: 3px solid #313131;
+    background: #1f1f1f;
+}
+
+.about-btns a {
+    margin: .5rem;
+    display: inline-block;
+}

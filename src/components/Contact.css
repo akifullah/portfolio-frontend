@@ -1,0 +1,122 @@
+#contact {
+    padding: 9rem;
+    background-color: #151515;
+    /* min-height: 100vh; */
+}
+
+#contact .sec-heading h2 {
+    color: #fff;
+}
+
+#contact .contact-form {
+    max-width: 740px;
+    margin: 5rem auto;
+    position: relative;
+}
+
+#contact .contact-form input,
+#contact .contact-form textarea {
+    all: unset;
+    font-size: 1.5rem;
+    line-height: 3rem;
+    width: 100%;
+    padding: 1rem 2rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+}
+
+#contact .contact-form input+span,
+#contact .contact-form textarea+span {
+    display: block;
+    position: relative;
+}
+
+#contact .contact-form input+span:after,
+#contact .contact-form textarea+span:after {
+    content: "";
+    background: transparent;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: 0%;
+    height: 1px;
+    transition: all 0.5s ease-in-out;
+    z-index: 10;
+
+}
+
+#contact .contact-form input:valid+span:after,
+#contact .contact-form input:focus+span:after,
+#contact .contact-form textarea:valid+span:after,
+#contact .contact-form textarea:focus+span:after {
+    background-color: #FF0077;
+    width: 100%;
+
+}
+
+#contact .c-btn button {
+    font-size: 1.5rem;
+    display: block;
+    letter-spacing: .2rem;
+    height: 6.6rem;
+    line-height: 6.6rem;
+    padding: 0 3rem;
+    margin-top: 4.8rem;
+    width: 100%;
+    background: #FF0077;
+    color: #FFFFFF;
+    text-align: center;
+    font-weight: 700;
+    transition: all 0.3s ease-in-out;
+    box-sizing: border-box;
+}
+
+#contact .c-btn button:hover {
+    background: #cc005f;
+}
+
+.contact-box-wrap {
+    margin-top: 8rem;
+}
+
+.contact-box-wrap .contact-box {
+    margin: 15px auto;
+    margin-bottom: 3rem;
+}
+
+.contact-box-wrap .contact-box i {
+    font-size: 3rem;
+    color: #fff;
+}
+
+.contact-box-wrap .contact-box h4 {
+    font-size: 1.5rem;
+    line-height: 1.714;
+    text-transform: uppercase;
+    color: #FF0077;
+    letter-spacing: .15rem;
+    font-weight: 700;
+    margin: .7rem 0;
+
+}
+
+.contact-box-wrap .contact-box p {
+    color: #6e6e6e;
+    font-size: 1.6rem;
+    line-height: 1.5;
+}
+
+
+@media screen and (max-width: 575px) {
+    #contact {
+        padding: 9rem 3rem;
+        background-color: #151515;
+    }
+}

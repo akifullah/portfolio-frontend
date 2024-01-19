@@ -1,0 +1,91 @@
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    /* border: 1px solid red; */
+    /* padding: 1.5rem 0; */
+    background-color: #151515;
+}
+
+#sidebar .admin-profile {
+    padding: 1.5rem;
+    border-bottom: 1px solid #333;
+}
+
+#sidebar .admin-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid #FF0077;
+}
+
+#sidebar .admin-profile h3 {
+    margin: 0;
+    margin-left: 1rem;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    color: #fefefe;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+#sidebar .sidebar-menu {
+    margin-top: 3rem;
+    padding: 1.5rem;
+}
+
+#sidebar ul {
+    width: 100%;
+}
+
+#sidebar ul li a {
+    display: block;
+    font-size: 1.6rem;
+    padding: 1rem 1.5rem;
+    font-weight: 500;
+    color: #fff;
+    background-color: #FF0077;
+    margin: .3rem 0;
+    border-radius: .5rem;
+    text-decoration: none;
+    transition: .4s ease-in-out;
+}
+
+#sidebar ul li a i {
+    font-size: inherit;
+    transition: .3s ease-in-out;
+
+}
+
+#sidebar ul li a:is(:hover, .active) {
+    background-color: #333;
+    letter-spacing: 2px;
+}
+
+#sidebar ul li .dropdown-menu {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    padding: 0;
+    transition: .4s ease-in-out;
+    display: block;
+    border: none;
+    background: transparent;
+    padding-bottom: 0;
+}
+
+#sidebar ul li a.show i {
+    transform-origin: center;
+    transform: rotate(-180deg);
+}
+
+#sidebar ul li .dropdown-menu a {
+    margin-left: 1.5rem;
+}
+
+#sidebar ul li .dropdown-menu.show {
+    height: 97px;
+}

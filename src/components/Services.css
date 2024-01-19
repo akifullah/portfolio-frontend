@@ -1,0 +1,42 @@
+#services {
+    padding: 10rem 2rem;
+    background: linear-gradient(to right, rgba(21, 21, 21, .9), rgba(21, 21, 21, .9)), url("../assets/img/bg.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+#services .sec-heading h2 {
+    color: #fff;
+}
+
+#services .service-wrap {
+    margin-top: 8rem;
+}
+
+
+#services .service-card {
+    margin: 1.5rem 0;
+}
+
+#services .service-card i {
+    font-size: 5.4rem;
+    color: #FF0077;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 2rem;
+}
+
+#services .service-card h3 {
+    font-size: 2rem;
+    color: #fff;
+    line-height: 1.5;
+    font-weight: 600;
+    margin-bottom: 1.8rem;
+    letter-spacing: 1px;
+}
+
+#services .service-card p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.7rem;
+    line-height: 1.7;
+}

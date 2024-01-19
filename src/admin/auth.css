@@ -1,0 +1,32 @@
+.login {
+    background-color: #151515;
+}
+
+.login .border {
+    border: 1px solid #eee !important;
+}
+
+.login .profile-pic {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 1px solid #FF0077;
+    margin: .5rem auto;
+    overflow: hidden;
+}
+
+.login .profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.login h4 {
+    color: #eee;
+    margin-bottom: 1rem;
+    font-size: 2.4rem;
+}
+
+.border input {
+    font-size: 1.6rem;
+}

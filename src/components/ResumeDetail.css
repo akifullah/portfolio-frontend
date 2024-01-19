@@ -1,0 +1,215 @@
+.resume-detail {
+    margin: 5rem 0;
+    position: relative;
+}
+
+
+.resume-detail h3 {
+    color: #FF0077;
+    font-size: 2.7rem;
+    line-height: 1.25;
+    text-rendering: optimizeLegibility;
+    margin-bottom: 2.1rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.resume-detail-wrap {
+    position: relative;
+}
+
+.r-d {
+    margin-bottom: 4rem;
+}
+
+.resume-detail-wrap:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 35%;
+    width: 1px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.resume-detail-wrap .p-heading {
+    position: relative;
+}
+
+.graduation-icon {
+    height: 50px;
+    width: 50px;
+    line-height: 4.8rem;
+    background: #333;
+    border-radius: 50%;
+    text-align: center;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: -50px;
+    top: 5px;
+    z-index: 10;
+
+}
+
+.graduation-icon i {
+    color: #fff;
+    font-size: 1.8rem;
+}
+
+.resume-detail-wrap .p-heading h4 {
+    color: #222;
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+    margin-bottom: 0rem;
+    font-size: 2.4rem;
+    line-height: 1.5;
+}
+
+.resume-detail-wrap .p-detail p,
+.resume-detail-wrap .p-heading p {
+    font-size: 1.8rem;
+    color: #888888;
+
+}
+
+
+
+.resume-detail-wrap .p-detail h5 {
+    font-size: 2rem;
+    line-height: 1.765;
+    padding-bottom: 1.8rem;
+    position: relative;
+    font-weight: 500;
+}
+
+
+.resume-detail-wrap .p-detail h5::after {
+    content: "";
+    display: block;
+    height: 3px;
+    width: 50px;
+    background: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.resume-detail-wrap .p-detail p {
+    margin-top: 3rem;
+    line-height: 1.8;
+}
+
+@media screen and (max-width : 991px) {
+    .graduation-icon {
+
+        right: -48px;
+
+
+    }
+
+    .resume-detail-wrap:after {
+
+        left: 35%;
+
+
+    }
+
+
+}
+
+@media screen and (max-width : 767px) {
+
+    .resume-detail-wrap {
+        position: relative;
+        padding-left: 60px;
+    }
+
+    .r-d {
+        margin-bottom: 4rem;
+    }
+
+    .resume-detail-wrap:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 25px;
+        width: 1px;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.1);
+    }
+
+    .resume-detail-wrap .p-heading {
+        position: relative;
+    }
+
+    .graduation-icon {
+        height: 40px;
+        width: 40px;
+        line-height: 4.8rem;
+        background: #333;
+        border-radius: 50%;
+        text-align: center;
+        color: #FFFFFF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        left: -54px;
+        right: auto;
+        top: 10px;
+        z-index: 10;
+
+    }
+
+    .graduation-icon i {
+        color: #fff;
+        font-size: 1.8rem;
+    }
+
+    .resume-detail-wrap .p-heading h4 {
+        color: #222;
+        font-style: normal;
+        text-rendering: optimizeLegibility;
+        margin-bottom: 0rem;
+        font-size: 2.4rem;
+        line-height: 1.5;
+    }
+
+    .resume-detail-wrap .p-detail p,
+    .resume-detail-wrap .p-heading p {
+        font-size: 1.8rem;
+        color: #888888;
+
+    }
+
+
+
+    .resume-detail-wrap .p-detail h5 {
+        font-size: 2rem;
+        line-height: 1.765;
+        padding-bottom: 1.8rem;
+        position: relative;
+        font-weight: 500;
+    }
+
+
+    .resume-detail-wrap .p-detail h5::after {
+        content: "";
+        display: block;
+        height: 3px;
+        width: 50px;
+        background: rgba(0, 0, 0, 0.2);
+        position: absolute;
+        left: 0;
+        bottom: 0;
+    }
+
+    .resume-detail-wrap .p-detail p {
+        margin-top: 3rem;
+        line-height: 1.8;
+    }
+
+}

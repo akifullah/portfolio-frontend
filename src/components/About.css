@@ -1,0 +1,131 @@
+#about {
+    padding: 10rem 0;
+
+}
+
+#about .sm-heading {
+    color: #FF0077;
+    font-size: 1.8rem;
+    line-height: 1.875;
+    margin-bottom: 0.3rem;
+    letter-spacing: .4rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+}
+
+#about .lg-heading {
+    font-size: 3.6rem;
+    font-weight: 700;
+    text-align: center;
+    color: #313131;
+    line-height: 1.25;
+    margin-bottom: 1.2rem;
+}
+
+#about .profile-detail {
+    margin: 5rem 0;
+}
+
+#about .profile-detail img {
+    width: 100px;
+    text-align: center;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+#about .profile-detail p {
+    font-size: 1.8rem;
+    line-height: 1.5;
+    color: #888888;
+}
+.text-justify{
+    text-align: justify;
+}
+/* PROFILE */
+
+.profile h3 {
+    font-size: 1.9rem;
+    text-transform: uppercase;
+    letter-spacing: .25rem;
+    font-weight: 700;
+}
+
+.profile .skill-wrap,
+.profile .profile-content {
+    margin: 2.5rem 0;
+}
+
+.skill-wrap h4,
+.profile .profile-content h4 {
+    color: #313131;
+    text-transform: uppercase;
+    letter-spacing: .2rem;
+    font-size: 1.6rem;
+    line-height: 3rem;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.profile .profile-content p {
+    color: #555;
+    font-size: 1.7rem;
+    line-height: 1;
+}
+
+/* SKILLS */
+
+.skill-wrap .skill-bar {
+    height: 0.6rem;
+    background: #a1a1a1;
+    width: 100%;
+    margin-bottom: 4rem;
+    padding: 0;
+    position: relative;
+    margin-top: .8rem;
+}
+
+.skill-wrap .skill-bar .skill-bar-inner {
+    background: #313131;
+    position: relative;
+    width: 0%;
+    height: 100%;
+    transition: all 0.5s ease-in-out;
+}
+
+.skill-wrap .skill-bar .skill-bar-inner .skill-bar-value {
+    position: absolute;
+    right: 0;
+    top: -3.6rem;
+    display: block;
+    color: #fff;
+    font-size: 1.3rem;
+    line-height: 1;
+    background: #313131;
+    padding: 0.6rem 0.6rem;
+    border-radius: 3px;
+}
+
+.skill-wrap .skill-bar .skill-bar-inner .skill-bar-value::after {
+    position: absolute;
+    left: 50%;
+    bottom: -5px;
+    margin-left: -5px;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    border-top: 5px solid #313131;
+    content: "";
+}
+
+.about-btns {
+    margin-top: 5rem;
+}
+
+@media screen and (max-width : 575px) {
+    #about {
+        padding: 10rem 1.5rem;
+
+    }
+}

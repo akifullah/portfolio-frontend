@@ -1,0 +1,29 @@
+#resume {
+    padding: 10rem 0;
+    background: #ebebeb;
+}
+
+
+.sec-heading {
+    margin-bottom: 4rem;
+    text-align: center;
+}
+
+.sec-heading h5 {
+    color: #FF0077;
+    font-size: 1.8rem;
+    line-height: 1.875;
+    margin-bottom: 0.3rem;
+    letter-spacing: .4rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+}
+
+.sec-heading h2 {
+    font-size: 3.8rem;
+    font-weight: 700;
+    color: #222;
+    line-height: 1.25;
+    margin-bottom: 1.2rem;
+}

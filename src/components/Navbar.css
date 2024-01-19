@@ -1,0 +1,142 @@
+.top-nav {
+    display: block;
+    background: #000000;
+    min-width: 220px;
+    /* min-height: 66px; */
+    position: fixed;
+    box-sizing: border-box;
+    left: 20%;
+    top: 0;
+    padding: 1.5rem 2rem;
+    z-index: 100;
+}
+
+.top-nav .toggler {
+    all: unset;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    /* background-color: lime; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.top-nav .toggler span {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 3px;
+    background-color: #FF0077;
+    transition: .3s ease-in-out;
+    transition-delay: .2s;
+
+}
+
+.top-nav .toggler span:before,
+.top-nav .toggler span:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #FF0077;
+    border-radius: 4px;
+    transition: .3s ease-in-out;
+
+
+}
+
+.top-nav .toggler span:before {
+    bottom: -8px;
+}
+
+.top-nav .toggler span:after {
+    top: -8px;
+
+
+}
+
+.top-nav.active .toggler span {
+    background-color: transparent;
+
+
+}
+
+
+.top-nav.active .toggler span:before {
+    transform: rotate(45deg);
+    bottom: 0;
+    transition-delay: .2s;
+
+}
+
+.top-nav.active .toggler span:after {
+    transform: rotate(-45deg);
+    top: 0;
+    transition-delay: .2s;
+
+
+
+}
+
+.top-nav h3 {
+    font-size: 3rem;
+    color: #fff;
+    font-weight: 600;
+    margin: 0 auto;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+.navs {
+    /* padding-top: 3rem; */
+    box-sizing: border-box;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.4s ease-in-out;
+}
+
+.top-nav.active .navs {
+    height: 27.5rem;
+    pointer-events: auto;
+
+    opacity: 1;
+}
+
+.navs ul {
+    padding-left: 0;
+    padding-top: 3rem;
+}
+
+.navs ul li a {
+    display: block !important;
+    color: #FFFFFF !important;
+    width: auto;
+    padding: 1.5rem;
+    line-height: 16px;
+    border: none;
+    font-size: 1.5rem;
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.4s ease-in-out;
+    
+}
+
+.navs ul li a:is(:hover, .active) {
+    color: #FF0077 !important;
+    transform: translateX(10px);
+}
+
+@media screen and (max-width: 575px) {
+    .top-nav {
+        box-sizing: border-box;
+        left: 0%;
+        width: 100%;
+
+
+    }
+}

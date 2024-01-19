@@ -1,0 +1,17 @@
+#footer {
+    background: #151515;
+}
+
+#footer .ft-left p {
+    color: #6e6e6e;
+    font-size: 1.6rem;
+    line-height: 1.5;
+}
+
+#footer .ft-right ul li {
+    margin: 1.5rem;
+}
+
+#footer .ft-right ul li a {
+    font-size: 4rem;
+}

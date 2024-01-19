@@ -1,0 +1,41 @@
+#addProject {
+    padding: 5rem 0;
+}
+
+#addProject h3 {
+    font-size: 2.4rem;
+}
+
+#addProject select,
+#addProject select option,
+#addProject input {
+    font-size: 1.6rem;
+}
+
+#addProject label {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-top: 1rem;
+}
+
+#addProject button {
+    all: unset;
+    cursor: pointer;
+    text-align: center;
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    height: 45px;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #fff;
+    background-color: #151515;
+    margin: 1rem 0;
+    border-radius: .5rem;
+    text-decoration: none;
+    transition: .4s ease-in-out;
+}
+
+#addProject button:hover {
+    background-color: #FF0077;
+}
