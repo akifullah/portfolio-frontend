@@ -33,7 +33,7 @@ import AddSmProject from './admin/addSmProject';
 import EditSmProject from './admin/EditSmProject';
 import { useState } from 'react';
 
-import {useDispatch } from "react-redux";
+import {useDispatch, useSelector } from "react-redux";
 import { login } from './store/AuthSlice/authSlice';
 import Contacts from './admin/Contacts';
 
@@ -54,10 +54,11 @@ import { setSmProject } from './store/SmProjectSlice/smProjectSlice';
 import Loader from './Loader';
 
 function App() {
-
   
+  const admin = JSON.parse(localStorage.getItem("adminAuth"));
+  const auth = useSelector(state=>state.auth.isAuth);
   const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem("adminAuth"));
+  const [isAuth,setIsAuth] = useState(null);
 
   const [isLogin, setIsLogin] = useState(false);
   const [loader, setLoader] = useState(true);
@@ -133,15 +134,10 @@ function App() {
     getSmData();
 
 
-    if (user?.token) {
-      dispatch(login(user));
-      setIsLogin(user.token ? true : false);
-      //   setIsLogin(auth?.isAuth);
-
+    if (admin?.token) {
+      dispatch(login(admin));
+      setIsLogin(true);
     }
-
-
-
 
     AOS.init({
       offset: 0,
@@ -150,7 +146,7 @@ function App() {
       delay: 100,
       once: true,
     });
-  }, [user?.token])
+  }, [auth?.token])
   return (
     <>
       <ToastContainer />
@@ -162,7 +158,6 @@ function App() {
 
       <div className="wrapper">
         <Routes>
-          <Route path='/admin/auth' element={<Auth />} />
           <Route path="/" element={<Home />} />
 
 

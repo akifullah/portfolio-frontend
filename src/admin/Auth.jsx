@@ -9,24 +9,11 @@ import { toast } from 'react-toastify';
 import SERVER_URl from '../utils/apiURl';
 const Auth = () => {
 
-    const auth = useSelector(state => state.auth);
-
+    const user = useSelector(state => state.user.user);
     const dispatch = useDispatch();
 
     const navigate = useNavigate()
 
-
-
-    const [isLogin, setIsLogin] = useState(false);
-
-
-    useEffect(() => {
-
-        if (isLogin) {
-            navigate("/admin");
-        }
-
-    }, []);
 
     const [inp, setInp] = useState({
         password: ""
@@ -35,15 +22,12 @@ const Auth = () => {
     const handleSubmit = async (e) => {
         try {
             e.preventDefault();
-            axios.defaults.headers.post['Content-Type'] = "application/x-www-form-urlencoded";
-            axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
             const { data } = await axios.post(`${SERVER_URl}/admin/login`, inp);
 
             if (data?.success) {
                 toast.success(data.message)
                 localStorage.setItem("adminAuth", JSON.stringify(data))
                 dispatch(login(data));
-                setIsLogin(auth.isAuth)
                 navigate("/admin/")
             }
 
@@ -55,22 +39,10 @@ const Auth = () => {
 
 
     const [admin, setAdmin] = useState({})
-    const getUser = async () => {
-        try {
-            const { data } = await axios.get(`${SERVER_URl}/admin/admin`);
-            if (data.success) {
-                const { admin } = data;
-                setAdmin(admin)
-            }
-
-        } catch (error) {
-            console.log(error);
-            toast.error(error.response.data.message);
-        }
-    }
+  
     useEffect(() => {
-        getUser();
-    }, [])
+        setAdmin(user);
+    }, [user])
 
 
 
