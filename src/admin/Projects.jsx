@@ -2,20 +2,17 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import SERVER_URl from '../utils/apiURl';
+import { useSelector , useDispatch} from 'react-redux';
+import { setProject } from '../store/ProjectSlice/projectSlice';
+import { toast } from 'react-toastify';
 
 const Projects = () => {
+    const dispatch = useDispatch()
+    const project = useSelector(state=> state.project.project);
+
     const [data, setData] = useState([]);
     const token = JSON.parse(localStorage.getItem("adminAuth")).token;
 
-    const getData = async () => {
-        const { data } = await axios.get(`${SERVER_URl}/all-project`, {
-            headers: {
-                Authorization: token
-            }
-        })
-        setData(data)
-
-    }
 
     // HANDLE DELETE
     const handleDelete = async (id) => {
@@ -27,8 +24,8 @@ const Projects = () => {
                         Authorization: token
                     }
                 })
-                alert(data.message)
-                getData()
+                toast.success(data.message)
+                dispatch(setProject(data.projects))
             }
 
         } catch (error) {
@@ -39,8 +36,8 @@ const Projects = () => {
 
 
     useEffect(() => {
-        getData()
-    }, [])
+        setData(project);
+    }, [project, data])
     return (
         <>
 

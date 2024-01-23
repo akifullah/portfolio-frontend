@@ -37,12 +37,7 @@ const Auth = () => {
             e.preventDefault();
             axios.defaults.headers.post['Content-Type'] = "application/x-www-form-urlencoded";
             axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-            const { data } = await axios.post(`${SERVER_URl}/admin/login`, inp, {
-                headers: {
-                    "Content-Type": "Application/json",
-                    "Access-Control-Allow-Origin": "*"
-                }
-            });
+            const { data } = await axios.post(`${SERVER_URl}/admin/login`, inp);
 
             if (data?.success) {
                 toast.success(data.message)

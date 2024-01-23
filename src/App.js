@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './App.css';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
@@ -34,7 +33,7 @@ import AddSmProject from './admin/addSmProject';
 import EditSmProject from './admin/EditSmProject';
 import { useState } from 'react';
 
-import { useSelector, useDispatch } from "react-redux";
+import {useDispatch } from "react-redux";
 import { login } from './store/AuthSlice/authSlice';
 import Contacts from './admin/Contacts';
 
@@ -52,14 +51,16 @@ import { setSkills } from './store/SkillSlice/SkillSlice';
 import { setEdu } from './store/EducationSlice/EducationSlice';
 import { setExp } from './store/ExpSlice/ExpSlice';
 import { setSmProject } from './store/SmProjectSlice/smProjectSlice';
+import Loader from './Loader';
 
 function App() {
 
+  
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("adminAuth"));
 
   const [isLogin, setIsLogin] = useState(false);
-  const navigate = useNavigate();
+  const [loader, setLoader] = useState(true);
 
 
   // const [users, setUser] = useState();
@@ -78,6 +79,8 @@ function App() {
   const getData = async () => {
     const { data } = await axios.get(`${SERVER_URl}/all-project`)
     dispatch(setProject(data));
+    setLoader(false)
+    
 
   }
 
@@ -151,6 +154,11 @@ function App() {
   return (
     <>
       <ToastContainer />
+
+{
+  loader?<Loader/> : null
+}
+      
 
       <div className="wrapper">
         <Routes>
