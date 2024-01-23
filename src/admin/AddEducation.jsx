@@ -3,8 +3,11 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import SERVER_URl from '../utils/apiURl';
+import { useDispatch } from 'react-redux';
+import { setEdu } from '../store/EducationSlice/EducationSlice';
 
 const AddEducation = () => {
+    const dispatch = useDispatch();
     const navigate = useNavigate()
     const token = JSON.parse(localStorage.getItem("adminAuth")).token;
     const [inpVal, setInpVal] = useState({
@@ -33,6 +36,7 @@ const AddEducation = () => {
             })
             if (data.success) {
                 toast.success(data.message)
+                dispatch(setEdu(data.edu));
                 navigate("/admin/education")
                 setInpVal({
                     name: "",

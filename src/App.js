@@ -44,17 +44,90 @@ import ProjectLayout from './admin/ProjectLayout';
 import EditProfile from './admin/EditProfile';
 import ChangePass from './admin/ChangePass';
 import Cv from './admin/Cv';
+import axios from 'axios';
+import { setUser } from './store/UserSlice/UserSlice';
+import { setProject } from './store/ProjectSlice/projectSlice';
+import SERVER_URl from './utils/apiURl';
+import { setSkills } from './store/SkillSlice/SkillSlice';
+import { setEdu } from './store/EducationSlice/EducationSlice';
+import { setExp } from './store/ExpSlice/ExpSlice';
+import { setSmProject } from './store/SmProjectSlice/smProjectSlice';
 
 function App() {
 
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("adminAuth"));
 
-  const auth = useSelector(state => state.auth);
   const [isLogin, setIsLogin] = useState(false);
   const navigate = useNavigate();
-  useEffect(() => {
 
+
+  // const [users, setUser] = useState();
+
+  const getUser = async () => {
+    try {
+      const { data } = await axios.get(`${SERVER_URl}/admin/admin`);
+      if (data.success) {
+        dispatch(setUser(data?.admin));
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message);
+    }
+  }
+  const getData = async () => {
+    const { data } = await axios.get(`${SERVER_URl}/all-project`)
+    dispatch(setProject(data));
+
+  }
+
+  const getSmData = async () => {
+    const { data } = await axios.get(`${SERVER_URl}/all-sm-project`);
+
+    dispatch(setSmProject(data.allProject));
+
+  }
+
+  const getSkills = async ()=>{
+    const { data } = await axios.get(`${SERVER_URl}/all-skill`);
+            if (data.success) {
+                dispatch(setSkills(data.skills));
+            }
+  }
+
+  // GET EDUCATION
+  const getEdu = async (req, res) => {
+    try {
+        const { data } = await axios.get(`${SERVER_URl}/get-edu`);
+        if (data.success) {
+            dispatch(setEdu(data.edu))
+        }
+    } catch (error) {
+        console.log(error);
+        toast.error(error.response.data.error);
+    }
+}
+
+  // GET Experience
+  const getExp = async (req, res) => {
+    try {
+        const { data } = await axios.get(`${SERVER_URl}/get-exp`);
+        if (data.success) {
+            dispatch(setExp(data.exp))
+        }
+    } catch (error) {
+        console.log(error);
+        toast.error(error.response.data.error);
+    }
+}
+
+  useEffect(() => {
+    getUser();
+    getData();
+    getSkills();
+    getEdu();
+    getExp();
+    getSmData();
 
 
     if (user?.token) {
@@ -82,8 +155,10 @@ function App() {
       <div className="wrapper">
         <Routes>
           <Route path='/admin/auth' element={<Auth />} />
+          <Route path="/" element={<Home />} />
 
-          <Route path="/admin/" element={isLogin ? <Dashboard /> : <Auth />} >
+
+          <Route path="admin/" element={isLogin ? <Dashboard /> : <Auth />} >
             <Route path="" element={<Dashboard />}>
               <Route path='' element={<ProjectLayout />} >
                 < Route path='' element={<Profile />} />
@@ -126,7 +201,6 @@ function App() {
               <Route path='cv' element={<Cv />} />
             </Route>
           </Route>
-          <Route path="/" element={<Home />} />
 
         </Routes>
       </div >

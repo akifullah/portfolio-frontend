@@ -17,7 +17,7 @@ const HeaderData = (props) => {
                     </p>
 
                     <a href='#about' >
-                        <button className='h-btn btn--ouline'>
+                        <button className='h-btn btn--ouline  '>
                             MORE ABOUT ME <i className="fa-solid fa-angle-down"></i>
                         </button>
                     </a>

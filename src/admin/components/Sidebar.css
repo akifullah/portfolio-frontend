@@ -20,6 +20,7 @@
     border-radius: 50%;
     overflow: hidden;
     border: 1px solid #FF0077;
+    object-fit: cover;
 }
 
 #sidebar .admin-profile h3 {

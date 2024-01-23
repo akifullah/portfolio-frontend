@@ -4,7 +4,14 @@ import "./AddProject.css"
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import SERVER_URl from '../utils/apiURl';
+import { useDispatch } from 'react-redux';
+import { setSmProject } from '../store/SmProjectSlice/smProjectSlice';
 const AddSmProject = () => {
+    const token = JSON.parse(localStorage.getItem("adminAuth")).token;
+
+    const dispatch = useDispatch();
+
+
     const navigate = useNavigate();
     const [input, setInput] = useState({
         name: "",
@@ -45,12 +52,20 @@ const AddSmProject = () => {
 
 
         try {
-            const data = await axios.post(`${SERVER_URl}/add-sm-project`, formData)
+            const {data} = await axios.post(`${SERVER_URl}/add-sm-project`, formData, {
+                headers:{
+                    Authorization: token
+                }
+            })
 
-            toast.success(data.data.message)
-            navigate("/admin/sm-projects")
+            if(data.success){
+                toast.success(data.message)
+                dispatch(setSmProject(data.allProject))
+                navigate("/admin/sm-projects")
+
+            }
         } catch (error) {
-            alert(error.response.data.message)
+            toast.error(error.response.data.message)
         }
     }
 
@@ -76,7 +91,7 @@ const AddSmProject = () => {
                             </div>
 
                             <div className='form-group'>
-                                <label>Small Description:</label>
+                                <label>Using:</label>
                                 <input type="text" placeholder='Small Description' className='form-control' onChange={handleInput} name='desc' />
                             </div>
 
@@ -93,7 +108,7 @@ const AddSmProject = () => {
                             <div className='form-group'>
                                 <label>AOS Animation Type:</label>
                                 <select name="aos" onChange={handleInput} className='form-select'>
-                                    <option selected value="fade-up">Fade Up</option>
+                                    <option  value="fade-up">Fade Up</option>
                                     <option value="fade-down">Fade Down</option>
                                     <option value="fade-left">Fade Left</option>
                                     <option value="fade-right">Fade Right</option>

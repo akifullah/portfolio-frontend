@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 // import adminImg from "../../assets/img/";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import "./Sidebar.css"
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import SERVER_URl from '../../utils/apiURl';
+import { useSelector } from 'react-redux';
 const Sidebar = () => {
+
+    const user = useSelector(state => state.user.user)
+
+    const [admin, setAdmin] = useState()
 
     const token = JSON.parse(localStorage.getItem("adminAuth")).token;
     const navigate = useNavigate();
@@ -26,13 +31,19 @@ const Sidebar = () => {
             toast.error(error.response.data.message);
         }
     }
+
+    useEffect(()=>{
+        setAdmin(user);
+    },[user])
+
+
     return (
         <>
             <section id="sidebar">
                 <Link to={"/admin/"} style={{ textDecoration: "none" }}>
                     <div className='admin-profile d-flex align-items-center justify-content-center'>
-                        <img src="http://localhost:8000/project-1699195978743.png" alt="img" />
-                        <h3>Akif Ullah</h3>
+                        <img src={`${SERVER_URl}/${admin?.profile}`} alt="img" />
+                        <h3>{admin?.name}</h3>
                     </div>
                 </Link>
 

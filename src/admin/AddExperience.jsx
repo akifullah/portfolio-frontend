@@ -3,8 +3,12 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import SERVER_URl from '../utils/apiURl';
+import { useDispatch } from 'react-redux';
+import {setExp} from "../store/ExpSlice/ExpSlice";
+
 
 const AddExperience = () => {
+    const dispatch = useDispatch();
     const navigate = useNavigate()
     const token = JSON.parse(localStorage.getItem("adminAuth")).token;
     const [inpVal, setInpVal] = useState({
@@ -34,6 +38,7 @@ const AddExperience = () => {
             navigate("/admin/experience")
             if (data.success) {
                 toast.success(data.message)
+                dispatch(setExp(data.exp))
                 setInpVal({
                     name: "",
                     org: "",

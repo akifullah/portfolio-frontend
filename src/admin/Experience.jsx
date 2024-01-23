@@ -2,43 +2,42 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import SERVER_URl from '../utils/apiURl';
+import { useDispatch, useSelector } from 'react-redux';
+import {setExp} from "../store/ExpSlice/ExpSlice";
+import { toast } from 'react-toastify';
 
 const Experience = () => {
+    const dispatch = useDispatch();
+    const experience = useSelector(state=>state.exp.exp);
+    const token = JSON.parse(localStorage.getItem("adminAuth")).token;
+
+    const [exper, setExper] = useState([]);
 
 
-    const [exp, setExp] = useState([]);
-
-    const getExp = async () => {
-        try {
-            const { data } = await axios.get("http://localhost:8000/get-exp")
-            if (data.success) {
-                setExp(data.exp)
-            }
-        } catch (error) {
-            console.log(error);
-            alert(error.response.data.message)
-        }
-    }
 
     useEffect(() => {
-        getExp()
-    }, [])
+        setExper(experience)
+    }, [experience])
 
     // DELETE HANDLE
     const handleDelete = async (id) => {
         try {
             const confirm = window.confirm("Are you sure? You want to Delete!")
             if (confirm) {
-                const { data } = await axios.delete(`${SERVER_URl}/delete-exp/${id}`);
+                const { data } = await axios.delete(`${SERVER_URl}/delete-exp/${id}`, {
+                    headers:{
+                        Authorization: token
+                    }
+                });
                 if (data.success) {
-                    alert(data.message);
-                    getExp()
+                    toast.success(data.message);
+                    dispatch(setExp(data.exp))
                 }
             }
 
         } catch (error) {
             console.log(error)
-            alert(error.response.data.message)
+            toast.error(error.response.data.message)
         }
     }
 
@@ -69,7 +68,7 @@ const Experience = () => {
                     </thead>
                     <tbody>
                         {
-                            exp?.map(item => (
+                            exper?.map(item => (
                                 <tr key={item?._id}>
                                     <td>{item?.name}</td>
                                     <td>{item?.org}</td>

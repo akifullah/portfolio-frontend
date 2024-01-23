@@ -1,40 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import ResumeDetail from './ResumeDetail'
 import "./Resume.css"
-import { toast } from 'react-toastify'
-import axios from 'axios'
-import SERVER_URl from '../utils/apiURl'
+import { useSelector } from 'react-redux'
 const Resume = () => {
+    const education = useSelector(state=> state.edu.edu);
+    const experience = useSelector(state=> state.exp.exp);
 
     const [edu, setEdu] = useState([]);
     const [exp, setExp] = useState([]);
-    const getEdu = async (req, res) => {
-        try {
-            const { data } = await axios.get(`${SERVER_URl}/get-edu`);
-            if (data.success) {
-                setEdu(data.edu);
-            }
-        } catch (error) {
-            console.log(error);
-            toast.error(error.response.data.error);
-        }
-    }
-
-    const getExp = async (req, res) => {
-        try {
-            const { data } = await axios.get(`${SERVER_URl}/get-exp`);
-            if (data.success) {
-                setExp(data.exp);
-            }
-        } catch (error) {
-            console.log(error);
-            toast.error(error.response.data.error);
-        }
-    }
+    
+    
     useEffect(() => {
-        getEdu();
-        getExp()
-    }, [])
+       setEdu(education);
+        setExp(experience)
+    }, [education, experience])
 
     return (
         <>

@@ -4,8 +4,14 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import SERVER_URl from '../utils/apiURl';
 import { useNavigate } from 'react-router-dom';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser } from '../store/UserSlice/UserSlice';
 const EditProfile = () => {
+
+    const user = useSelector(state => state.user.user);
+
+    const dispatch = useDispatch();
+
     const navigate = useNavigate();
     const [input, setInput] = useState({
         name: "",
@@ -21,30 +27,6 @@ const EditProfile = () => {
     });
     const [profile, setProfile] = useState();
 
-    const getUser = async () => {
-        try {
-            const { data } = await axios.get(`${SERVER_URl}/admin/admin`);
-            if (data.success) {
-                const { admin } = data;
-                setInput({
-                    name: admin.name,
-                    headLine: admin.headLine,
-                    email: admin.email,
-                    phone: admin.phone,
-                    dob: admin.dob,
-                    address: admin.address,
-                    about: admin.about,
-                    git: admin.git,
-                    fb: admin.fb,
-                    in: admin.in
-                })
-            }
-
-        } catch (error) {
-            console.log(error);
-            toast.error(error.response.data.message);
-        }
-    }
 
     const handleInput = (e) => {
         const { name, value } = e.target;
@@ -84,7 +66,7 @@ const EditProfile = () => {
                     fb: "",
                     in: ""
                 });
-                setProfile();
+                dispatch(setUser(data.user));
                 toast.success(data.message);
                 navigate("/admin/");
 
@@ -97,9 +79,24 @@ const EditProfile = () => {
 
     }
 
+    const getUser = () => {
+        setInput({
+            name: user.name,
+            headLine: user.headLine,
+            email: user.email,
+            phone: user.phone,
+            dob: user.dob,
+            address: user.address,
+            about: user.about,
+            git: user.git,
+            fb: user.fb,
+            in: user.in
+        })
+    }
+
     useEffect(() => {
-        getUser();
-    }, [])
+        getUser()
+    }, [user])
     return (
         <>
             <section id='addProject'>

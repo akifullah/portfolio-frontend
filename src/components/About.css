@@ -27,10 +27,14 @@
     margin: 5rem 0;
 }
 
-#about .profile-detail img {
-    width: 100px;
-    text-align: center;
+
+#about .profile-detail  img {
+    width: 150px;
+    height: 150px;
+    overflow: none;
+    object-fit: cover;
     border-radius: 50%;
+    text-align: center;
     margin: 0 auto;
     display: block;
     margin-bottom: 1.5rem;

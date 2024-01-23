@@ -4,24 +4,16 @@ import { Link } from 'react-router-dom'
 import SERVER_URl from '../utils/apiURl'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { useSelector } from 'react-redux';
 const Profile = () => {
+    const user = useSelector(state => state.user.user);
+    
     const [admin, setAdmin] = useState({})
-    const getUser = async () => {
-        try {
-            const { data } = await axios.get(`${SERVER_URl}/admin/admin`);
-            if (data.success) {
-                const { admin } = data;
-                setAdmin(admin)
-            }
 
-        } catch (error) {
-            console.log(error);
-            toast.error(error.response.data.message);
-        }
-    }
     useEffect(() => {
-        getUser();
-    }, [])
+        setAdmin(user)
+
+    }, [admin, user])
     return (
         <>
 
@@ -30,7 +22,7 @@ const Profile = () => {
                     <div className="col-lg-10 col-xl-8 mx-auto border rounded px-4 ">
                         <div className="profile d-flex align-items-center border-bottom mb-3 py-4 position-relative">
                             <div className="pro-img me-5">
-                                <img src={`${SERVER_URl}/${admin.profile}`} width={"150px"} alt="" />
+                                <img src={`${SERVER_URl}/${admin?.profile}`} width={"150px"} alt="" />
                             </div>
 
                             <div>

@@ -2,23 +2,34 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import SERVER_URl from '../utils/apiURl';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSmProject } from '../store/SmProjectSlice/smProjectSlice';
+import toast from 'react-hot-toast';
 const SmProjects = () => {
+    const token = JSON.parse(localStorage.getItem("adminAuth")).token;
 
+
+    const dispatch = useDispatch();
+    
+    
+    const sm = useSelector(state=>state.smProject.smProject);
     const [data, setData] = useState([]);
-    const getData = async () => {
-        const { data } = await axios.get(`${SERVER_URl}/all-sm-project`)
-        setData(data.projects)
-
-    }
-
     // HANDLE DELETE
     const handleDelete = async (id) => {
         try {
             const confirm = window.confirm("Are You sure? You want to Delete")
             if (confirm) {
-                const { data } = await axios.delete(`${SERVER_URl}/delete-sm-project/${id}`)
-                alert(data.message)
-                getData()
+                const { data } = await axios.delete(`${SERVER_URl}/delete-sm-project/${id}`, {
+                    headers: {
+                        Authorization: token
+                    }
+                });
+                if(data.success){
+                    console.log("All " , data.allProject)
+                    toast.success(data.message)
+                    dispatch(setSmProject(data.allProject))
+
+                }
             }
 
         } catch (error) {
@@ -30,8 +41,8 @@ const SmProjects = () => {
 
 
     useEffect(() => {
-        getData()
-    }, [])
+        setData(sm);
+    }, [sm])
 
 
 
@@ -49,7 +60,7 @@ const SmProjects = () => {
                             <tr className='bg-dark text-light ' >
                                 <th>Image</th>
                                 <th>Title</th>
-                                <th>Desc</th>
+                                <th>Using</th>
                                 <th>Live </th>
                                 <th>Github </th>
                                 <th>Animation</th>

@@ -56,7 +56,7 @@ const Projects = () => {
                             <tr className='bg-dark text-light ' >
                                 <th>Image</th>
                                 <th>Title</th>
-                                <th>Desc</th>
+                                <th>Using</th>
                                 <th>Live </th>
                                 <th>Github </th>
                                 <th>Animation</th>

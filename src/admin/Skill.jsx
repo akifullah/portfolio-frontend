@@ -4,11 +4,15 @@ import "./skill.css"
 import axios from 'axios'
 import {toast} from 'react-toastify'
 import SERVER_URl from '../utils/apiURl'
+import { useDispatch, useSelector } from 'react-redux'
+import { setSkills } from '../store/SkillSlice/SkillSlice'
 
 const Skill = () => {
+    const dispatch = useDispatch();
+    const skill = useSelector(state=> state.skills.skills);
     const token = JSON.parse(localStorage.getItem("adminAuth")).token;
 
-    const [skills, setSkills] = useState([]);
+    const [skillss, setSkillss] = useState([]);
 
     const handleModal = (id) => {
         document.querySelector(".modal-backdrop").remove()
@@ -16,23 +20,6 @@ const Skill = () => {
         document.querySelector(`${id}`).style.display = "none"
     }
 
-    // get all SKills
-    const getSkills = async () => {
-        try {
-            const { data } = await axios.get(`${SERVER_URl}/all-skill`)
-            if (data.success) {
-                setSkills(data.skills);
-
-            }
-        } catch (error) {
-            console.log(error)
-            toast.error(error.response.data.message)
-        }
-    }
-
-    useEffect(() => {
-        getSkills()
-    }, [])
 
     const [val, setVal] = useState({
         name: "",
@@ -62,7 +49,8 @@ const Skill = () => {
                     name: "",
                     percentage: ""
                 })
-                getSkills()
+                dispatch(setSkills(data.skills))
+                
                 handleModal("#add-skill")
 
             }
@@ -87,7 +75,7 @@ const Skill = () => {
                 })
 
                 if (data.success) {
-                    getSkills()
+                    dispatch(setSkills(data.skills))
                     toast.success(data.message)
 
                 }
@@ -133,7 +121,8 @@ const Skill = () => {
                 }
             })
             toast.success(data.message)
-            getSkills()
+            dispatch(setSkills(data.skills))
+
             handleModal("#edit-skill")
 
         } catch (error) {
@@ -143,6 +132,9 @@ const Skill = () => {
         }
     }
 
+    useEffect(()=>{
+        setSkillss(skill)
+    },[skill])
 
     return (
         <>
@@ -209,7 +201,7 @@ const Skill = () => {
 
                 </div>
                 {
-                    skills.map((e, i) => (
+                    skillss.map((e, i) => (
                         <div className=" px-5 " key={i}>
                             <div className=" row align-items-center border-bottom  py-4 mt-4">
                                 <div className="col-9">

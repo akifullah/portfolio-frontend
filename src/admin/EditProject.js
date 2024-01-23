@@ -97,7 +97,7 @@ const EditProject = () => {
                             </div>
 
                             <div className='form-group'>
-                                <label>Small Description:</label>
+                                <label>Using:</label>
                                 <input type="text" placeholder='Small Description' className='form-control' onChange={handleInput} name='desc' value={input.desc} />
                             </div>
 

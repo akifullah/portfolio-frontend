@@ -3,31 +3,21 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import SERVER_URl from '../utils/apiURl';
+import { useDispatch, useSelector } from 'react-redux';
+import { setEdu } from '../store/EducationSlice/EducationSlice';
 
 const Education = () => {
-
+    const dispatch = useDispatch();
+    const education = useSelector(state=> state.edu.edu);
+   
     const token = JSON.parse(localStorage.getItem("adminAuth")).token;
-    const [exp, setExp] = useState([]);
+    const [educat, setEducate] = useState([]);
 
-    const getExp = async () => {
-        try {
-            const { data } = await axios.get(`${SERVER_URl}/get-edu`, {
-                headers: {
-                    Authorization: token
-                }
-            })
-            if (data.success) {
-                setExp(data.edu)
-            }
-        } catch (error) {
-            console.log(error);
-            alert(error.response.data.message)
-        }
-    }
+  
 
     useEffect(() => {
-        getExp()
-    }, [])
+        setEducate(education)
+    }, [education])
 
     // DELETE HANDLE
     const handleDelete = async (id) => {
@@ -41,7 +31,7 @@ const Education = () => {
                 });
                 if (data.success) {
                     toast.success(data.message);
-                    getExp()
+                    dispatch(setEdu(data.edu))
                 }
             }
 
@@ -78,7 +68,7 @@ const Education = () => {
                     </thead>
                     <tbody>
                         {
-                            exp?.map(item => (
+                            educat?.map(item => (
                                 <tr key={item?._id}>
                                     <td>{item?.name}</td>
                                     <td>{item?.org}</td>

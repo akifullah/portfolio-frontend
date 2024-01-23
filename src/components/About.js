@@ -1,60 +1,44 @@
 import React, { useEffect, useState } from 'react'
 
 import "./About.css"
-import profileImg from "../assets/img/profile-pic.jpg"
-import cvs from "../assets/img/CV.pdf"
 import Profile from './Profile'
 import Skill from './Skill'
 import Button from './Button'
 import { toast } from 'react-toastify'
 import axios from 'axios'
 import SERVER_URl from '../utils/apiURl'
+import { useSelector } from 'react-redux'
 
 
 const About = () => {
-    const [admin,setAdmin] = useState();
-    const [cv,setCv] = useState();
-    const [skills, setSkills] = useState([]);
-    const getSkills = async () => {
-        try {
-            const { data } = await axios.get(`${SERVER_URl}/all-skill`);
-            if (data.success) {
-                setSkills(data.skills);
-            }
-        } catch (error) {
-            console.log(error);
-            toast.error(error.response.data.message);
-        }
-    }
-    const getUser = async () => {
-        try {
-            const { data } = await axios.get(`${SERVER_URl}/admin/admin`);
-            if (data.success) {
-                setAdmin(data.admin);
-            }
-        } catch (error) {
-            console.log(error);
-            toast.error(error.response.data.message);
-        }
-    }
+    
+    const user = useSelector(state => state.user.user);
+    const skill = useSelector(state => state.skills.skills);
 
-    const getCv = async ()=>{
+    // console.log(skill)
+    const [admin, setAdmin] = useState();
+    const [cv, setCv] = useState();
+    const [skills, setSkills] = useState([]);
+  
+   
+    const getCv = async () => {
         try {
-            const {data} = await axios.get(`${SERVER_URl}/get-cv`);
-            if(data.success){
+            const { data } = await axios.get(`${SERVER_URl}/get-cv`);
+            if (data.success) {
                 setCv(data.cv.name);
             }
         } catch (error) {
             console.log(error);
         }
     }
-    
-    
+
+
     useEffect(() => {
-        getSkills();
+        setAdmin(user);
+        setSkills(skill)
         getCv();
-        getUser();
-    }, [])
+
+    }, [user, skill])
     return (
         <>
             <section id='about'>
@@ -66,8 +50,8 @@ const About = () => {
                                 <h2 className='lg-heading'>Let me introduce myself.</h2>
                             </div>
 
-                            <div className='row  profile-detail' data-aos="fade-up">
-                                <div className='col-md-3'  data-aos="fade-right">
+                            <div className='row align-items-center profile-detail' data-aos="fade-up">
+                                <div className='col-md-3' data-aos="fade-right">
                                     <img src={`${SERVER_URl}/${admin?.profile}`} alt='' width="100%" />
                                 </div>
 

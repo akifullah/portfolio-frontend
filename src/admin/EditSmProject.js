@@ -4,8 +4,12 @@ import "./AddProject.css"
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import SERVER_URl from '../utils/apiURl';
+import { useDispatch } from 'react-redux';
+import { setSmProject } from '../store/SmProjectSlice/smProjectSlice';
 const EditSmProject = () => {
     const token = JSON.parse(localStorage.getItem("adminAuth")).token;
+    const dispatch = useDispatch();
+
     const { id } = useParams()
     const navigate = useNavigate();
     const [input, setInput] = useState({
@@ -64,12 +68,14 @@ const EditSmProject = () => {
 
 
         try {
-            const data = await axios.put(`${SERVER_URl}/edit-sm-project/${id}`, formData, {
+            const {data} = await axios.put(`${SERVER_URl}/edit-sm-project/${id}`, formData, {
                 headers: {
                     Authorization: token
                 }
             })
-            toast.success(data.data.message)
+           
+            toast.success(data.message)
+            dispatch(setSmProject(data.allProject))
             navigate("/admin/sm-projects");
         } catch (error) {
             alert(error.response.data.message)
@@ -98,7 +104,7 @@ const EditSmProject = () => {
                             </div>
 
                             <div className='form-group'>
-                                <label>Small Description:</label>
+                                <label>Using:</label>
                                 <input type="text" placeholder='Small Description' className='form-control' onChange={handleInput} name='desc' value={input.desc} />
                             </div>
 

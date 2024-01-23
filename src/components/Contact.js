@@ -6,9 +6,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import SERVER_URl from '../utils/apiURl';
+import { useSelector } from 'react-redux';
 
 const Contact = () => {
-    const [user, setUser] = useState();
+    const users = useSelector(state => state.user.user);
+    const [user, setUser] = useState({});
     const [input, setInput] = useState({
         name: "",
         email: "",
@@ -33,33 +35,30 @@ const Contact = () => {
     const handleForm = async (e) => {
         e.preventDefault();
         try {
-            setInput({
-                name: "",
-                email: "",
-                subject: "",
-                message: ""
-
-
-            })
+            
 
 
             async function res() {
                 const res = await axios.post(`${SERVER_URl}/contact`, input);
-
+                setInput({
+                    name: "",
+                    email: "",
+                    subject: "",
+                    message: ""
+    
+    
+                })
                 return res
             }
             toast.promise(
                 res,
                 {
-                    pending: 'Please Wait!',
-                    success: 'Thanks for contact us',
+                    pending: 'Please Wait..',
+                    success: 'Thanks, I will reach you soon!',
                     error: 'Opps something goes wrong! 🤯'
                 }
             )
 
-            // if (res) {
-            //     alert(res.data.message)
-            // }
 
         } catch (error) {
             // alert(error.response.data.message)
@@ -68,20 +67,10 @@ const Contact = () => {
 
     }
 
-    const getUser = async ()=>{
-        try {
-            const {data} = await axios.get(`${SERVER_URl}/admin/admin`);
-            if(data.success){
-                setUser(data.admin);
-            }
-        } catch (error) {
-            console.log(error)
-        }
-    }
 
     useEffect(()=>{
-        getUser();
-    },[])
+        setUser(users)
+    },[users])
 
     return (
         <>
